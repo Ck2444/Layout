@@ -1,0 +1,271 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Dosis', sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+button {
+  border: none;
+  cursor: pointer;
+}
+
+.burger_menu {
+  display: none;
+}
+.main_section {
+  max-width: 1171px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.header_container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  min-height: 155px;
+}
+
+.header_container nav ul {
+  display: flex;
+  justify-content: space-between;
+  max-width: 379px;
+  flex-wrap: wrap;
+  gap: 25px;
+}
+
+.header_container nav ul li {
+  color: rgb(0, 0, 0);
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 23px;
+}
+
+.header_container button {
+  border-radius: 999px;
+  background: rgb(173, 167, 255);
+  color: rgb(255, 255, 255);
+  padding: 16px 32px 16px 32px;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 23px;
+}
+
+/* main */
+
+.section_container {
+  display: flex;
+}
+
+.section_container__left {
+  position: absolute;
+  z-index: 1;
+  margin-top: 89px;
+}
+
+.section_container__left h1 {
+  font-size: 69px;
+  font-weight: 700;
+  margin-bottom: 23px;
+  line-height: 87px;
+  letter-spacing: 0%;
+  text-align: left;
+}
+
+.section_container__left p {
+  max-width: 625px;
+  margin-bottom: 60px;
+  color: rgb(64, 64, 64);
+  font-size: 18px;
+}
+
+.purple {
+  color: rgb(173, 167, 255);
+}
+
+.section_container__right {
+  position: relative;
+  z-index: 0;
+  flex: 1;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+}
+
+.section_container__buttoms_container {
+  display: flex;
+  justify-content: space-between;
+  max-width: 356px;
+  margin-bottom: 60px;
+}
+
+.buttoms_container_button1 {
+  border-radius: 999px;
+  background: rgb(173, 167, 255);
+  color: rgb(255, 255, 255);
+  font-size: 18px;
+  font-weight: 600;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 16px 36px;
+}
+
+.buttoms_container_button1 img {
+  margin-left: 10px;
+}
+
+.button2_container {
+  display: flex;
+}
+
+.button2_container button {
+  margin-left: 10px;
+  color: rgb(173, 167, 255);
+  background-color: #fff;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 23px;
+  letter-spacing: 0%;
+  text-align: left;
+}
+
+.section_container__numbers_container {
+  display: flex;
+  justify-content: space-between;
+  max-width: 442px;
+}
+
+.number {
+  color: rgb(48, 43, 58);
+  font-size: 43px;
+  font-weight: 600;
+}
+
+.label {
+  color: rgb(104, 104, 104);
+  font-family: Dosis;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+/* 
+min-query
+max-query
+in-query 
+*/
+
+@media only screen and (min-width: 700px) and (max-width: 1200px) {
+  .header_container {
+    margin: 0 10%;
+  }
+
+  .section_container {
+    flex-direction: column;
+    margin: 0% 10%;
+  }
+  .section_container__left {
+    margin-top: 0px;
+  }
+
+  .section_container__right {
+    display: none;
+  }
+}
+
+@media only screen and (min-width: 320px) and (max-width: 600px) {
+  .header_container {
+    padding: 25px 17px;
+    min-height: 0px;
+    border-bottom: 0.5px solid rgba(212, 212, 212, 0.58);
+  }
+
+  .logo_img {
+    height: 25px;
+  }
+
+  .header_container > nav {
+    display: none;
+  }
+
+  .header_container > button {
+    display: none;
+  }
+
+  .burger_menu {
+    display: block;
+    height: 16px;
+  }
+
+  .section_container {
+    flex-direction: column;
+    padding: 0 16px;
+  }
+  .section_container__left {
+    position: initial;
+    margin-top: 0px;
+  }
+
+  .section_container__left h1 {
+    font-size: 34px;
+    line-height: 43px;
+  }
+
+  .section_container__left p {
+    color: rgb(64, 64, 64);
+    font-size: 12px;
+    line-height: 15px;
+    margin-bottom: 35px;
+  }
+
+  .section_container__buttoms_container {
+    display: flex;
+    justify-content: start;
+  }
+
+  .buttoms_container_button1 {
+    font-size: 12px;
+    margin-right: 20px;
+  }
+
+  .button2_container button {
+    color: rgb(173, 167, 255);
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 15px;
+  }
+
+  .number {
+    font-size: 30px;
+    font-weight: 600;
+    line-height: 38px;
+  }
+
+  .label {
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 15px;
+  }
+
+  .section_container__right {
+    position: initial;
+    margin-top: 60px;
+  }
+
+  .section_container__right img {
+    max-width: 100%; /* The image will not be wider than the container */
+  }
+}
