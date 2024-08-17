@@ -187,12 +187,11 @@ main {
   max-width: 1600px;
   margin: 0 auto;
 }
-
 .shop {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
   gap: 103px;
-  padding: 150px 0;
+  padding: 150px 30px;
 }
 
 .shop__item {
@@ -200,10 +199,29 @@ main {
   flex-direction: column;
   gap: 16px;
 }
+
+.shop__item i {
+  font-size: 32px;
+  color: #222;
+}
+
+.shop__item h3 {
+  color: #222;
+  font-size: 21px;
+  font-weight: 700;
+}
+
+.shop__item p {
+  color: #747474;
+  font-size: 16px;
+  font-weight: 400;
+}
+
 /* 
 ++++++++++++++++++++ MEDIA+++++++++++++++++++++++++++++++++++++ 
 */
-@media (max-width: 1024px) {
+/* 0--->1140px */
+@media (max-width: 1140px) {
   /* -----Header--------- */
   .navbar__left {
     gap: 60px;
@@ -214,9 +232,27 @@ main {
     gap: 30px;
   }
 
+  .header__body .info h1 {
+    font-size: 180px;
+  }
+
   /* --------Section-------- */
+
+  .shop {
+    padding: 100px 40px;
+    gap: 40px;
+    justify-content: center;
+  }
+  .shop__item h3 {
+    font-size: 16px;
+  }
+
+  .shop__item p {
+    font-size: 14px;
+  }
 }
 
+/* 0------>768px +1 ----->1140px */
 @media (max-width: 768px) {
   /*  ----Header*/
   .navbar__left {
@@ -238,6 +274,10 @@ main {
     display: none;
   }
 
+  .navbar__logo {
+    display: none;
+  }
+
   .navbar_menu a {
     color: var(--main-font-color);
     padding: 8px 16px;
@@ -245,6 +285,31 @@ main {
 
   .navbar_dropdown:hover .navbar_menu {
     display: flex;
+  }
+
+  .header__body .info h1 {
+    font-size: 90px;
+  }
+
+  .slider_action {
+    padding: 0px 20px;
+  }
+
+  .slider_action__control {
+    gap: 20px;
+  }
+
+  .slider_action__btn {
+    width: 50px;
+    height: 50px;
+  }
+
+  .header {
+    background-position: left;
+  }
+
+  .header__body {
+    padding: 100px 0;
   }
 
   /* --------- Section ---------- */
