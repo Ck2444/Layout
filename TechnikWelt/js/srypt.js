@@ -61,6 +61,7 @@ function cutTextByLength(text, length) {
 
 function createProductsItem(item) {
   let elementItem = document.createElement('div');
+  elementItem;
   elementItem.classList.add('item');
 
   let elementItitle = document.createElement('h2');
@@ -107,4 +108,21 @@ function updateCart(cartItems = cart) {
 
   document.querySelector('.sidebar').append(elementCart);
 }
+
+// Gpt solution
+function updateCart(cartItems = cart) {
+  // Проверяем, существует ли элемент с классом 'cart'
+  const existingCart = document.querySelector('.cart');
+  if (existingCart) {
+    existingCart.remove(); // Корректное удаление существующего элемента корзины
+  }
+
+  let elementCart = document.createElement('div');
+  elementCart.classList.add('cart');
+
+  cartItems.forEach((item) => elementCart.append(createProductsItem(item)));
+
+  document.querySelector('.sidebar').append(elementCart);
+}
+
 createProducts(store, 'products', '.container');
