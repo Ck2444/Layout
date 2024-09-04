@@ -71,4 +71,4 @@ const store = [
   },
 ];
 
-alert('alfjsl');
+console.log();
