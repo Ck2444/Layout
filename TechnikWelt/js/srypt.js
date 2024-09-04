@@ -70,5 +70,3 @@ const store = [
     description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
   },
 ];
-
-console.log();
