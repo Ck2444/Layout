@@ -36,6 +36,10 @@ body {
   object-fit: contain;
 }
 
+.products .item__title {
+  font-size: 14px;
+}
+
 .sidebar {
   max-width: 300px;
   width: 100%;
@@ -66,11 +70,13 @@ body {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  overflow-y: auto;
+  max-height: 100%;
 }
 
 .cart .item {
   display: flex;
-  align-items: ;
+  flex-direction: column;
   gap: 20px;
 }
 
