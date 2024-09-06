@@ -42,7 +42,6 @@ const store = [
     description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
   },
 ];
-let cart = [];
 
 function createProducts(products, elementClassName, elementAppendClassName) {
   let elementProducts = document.createElement('div');
@@ -91,58 +90,20 @@ function createProductsItem(item) {
 }
 
 function addToCart(item) {
-  cart.push({ ...item, cardId: Math.random() });
+  let cart = localStorage.getItem('cart');
 
-  console.log(cart);
-  // updateCart();
-}
+  if (cart) {
+    cart = JSON.parse(cart);
 
-function createCartItem(item) {
-  let elementItem = document.createElement('div');
-  elementItem.classList.add('item');
+    cart.push({ ...item, cardId: Date.now() });
 
-  let elementImg = document.createElement('img');
-  elementImg.src = item.image;
-  elementImg.classList.add('item__img');
-
-  let elementDivItem = document.createElement('div');
-
-  let elementIitle = document.createElement('h2');
-  elementIitle.innerText = item.title;
-  elementIitle.classList.add('item__title');
-
-  let elememtPrice = document.createElement('h4');
-  elememtPrice.innerText = '$ ' + item.price;
-  elememtPrice.classList.add('item__price');
-
-  let elementButton = document.createElement('button');
-  elementButton.onclick = () => removeItem(item);
-  elementButton.innerText = 'REMOVE ITEM';
-  elementButton.classList.add('btn', 'btn-red');
-
-  elementItem.append(elementImg, elementDivItem, elementButton);
-  elementDivItem.append(elementIitle, elememtPrice);
-
-  return elementItem;
-}
-
-function removeItem(item) {
-  cart = cart.filter((product) => product.cardId !== item.cardId);
-
-  updateCart();
-}
-
-function updateCart(cartItems = cart) {
-  if (document.querySelector('.cart')) {
-    document.querySelector('.cart').remove();
+    localStorage.setItem('cart', JSON.stringify(cart));
+  } else {
+    localStorage.setItem('cart', JSON.stringify([{ ...item, cardId: Date.now() }]));
   }
-
-  let elementCart = document.createElement('div');
-  elementCart.classList.add('cart');
-
-  cartItems.forEach((item) => elementCart.append(createCartItem(item)));
-
-  document.querySelector('.sidebar').append(elementCart);
+  //   cart.push({ ...item, cardId: Math.random() });
+  //   console.log(cart);
+  // updateCart();
 }
 
 createProducts(store, 'products', '.page-home .container');
