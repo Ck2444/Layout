@@ -11,13 +11,34 @@
       <!-- .constainer.products+aside.sidebar -->
       <nav class="navbar">
         <ul>
-          <li><a class="navbar__item navbar__item-active" href="index.html">Home</a></li>
-          <li><a class="navbar__item" href="cart.html">Cart</a></li>
+          <li><a class="navbar__item navbar__item-active" href="index.html">Startseite</a></li>
+          <li><a class="navbar__item" href="cart.html">Warenkorb</a></li>
         </ul>
       </nav>
 
       <div class="page-home">
-        <div class="container"></div>
+        <div class="container">
+          <div class="products__header">
+            <div class="search-form">
+              <input
+                type="text"
+                name="search"
+                class="search-form__input"
+                placeholder="Nach Name suchen"
+              />
+            </div>
+
+            <div>
+              <select class="product-filter">
+                <option value="0">Wählen</option>
+                <option value="1">Preis absteigend</option>
+                <option value="2">Preis aufsteigend</option>
+                <option value="3">Von [A-Z]</option>
+                <option value="4">Von [Z-A]</option>
+              </select>
+            </div>
+          </div>
+        </div>
       </div>
       <!-- <aside class="sidebar">
         <div class="cart">
@@ -37,6 +58,36 @@
       </aside> -->
     </main>
 
+    <!-- event bubbling -->
+    <!-- <div class="elem-1">
+      <h4>Livel 1</h4>
+      <div class="elem-2">
+        <h4>level 2</h4>
+        <div class="elem-3">
+          <h4>Level 3</h4>
+          <div class="elem-4">
+            <h4>Level 4</h4>
+          </div>
+        </div>
+      </div>
+    </div> -->
+
+    <!-- Event Delegation -->
+    <!-- <div class="books">
+      <div class="item item-1">item-1</div>
+      <div class="item item-2"><span>item-2 in span</span></div>
+      <div class="item item-3">item-3</div>
+      <div class="item item-4">item-4</div>
+    </div> -->
+
+    <div class="form">
+      <div class="form__item"><input type="text" name="username" class="input input-1" /></div>
+      <div class="form__item"><input type="text" name="surname" class="input input-2" /></div>
+      <div class="form__item"><input type="number" name="age" class="input input-3" /></div>
+      <div class="form__item"><input type="text" name="counrtry" class="input input-3" /></div>
+
+      <button class="btn btn-form">ADD</button>
+    </div>
     <script src="./js/home.js"></script>
   </body>
 </html>

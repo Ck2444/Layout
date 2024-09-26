@@ -1,5 +1,14 @@
 let cart = [];
 
+//let text = JSON.prarse(localStorage.getItem("sortBy"))
+//let text = getLocalStorage("sortBy")
+
+//localStorage.setItem("key", JSON.strigify({name:"John"}))
+//setLocalStorage("key", ["hello"])
+
+const getLocalStorage = (key) => JSON.parse(localStorage.getItem(key));
+const setLocalStorage = (key, data) => localStorage.setItem(key, JSON.stringify(data));
+
 function createCartItem(item) {
   let elementItem = document.createElement('div');
   elementItem;
@@ -59,7 +68,7 @@ function createCartItem(item) {
 function removeItem(item) {
   cart = cart.filter((product) => product.cardId !== item.cardId);
 
-  localStorage.setItem('cart', JSON.stringify(cart));
+  setLocalStorage('cart', cart);
   updateCart();
 }
 
@@ -74,7 +83,17 @@ function updateCart(cartItems = cart) {
   cartItems.forEach((item) => elementCart.append(createCartItem(item)));
 
   document.querySelector('.page-cart .container').append(elementCart);
+
+  getSumCart();
 }
+
+const getSumCart = () => {
+  const cartSumResult = document.querySelector('.cart-sum__result');
+
+  const cartSum = cart.reduce((acc, val) => acc + val.price, 0);
+
+  cartSumResult.innerText = `${cartSum} $`;
+};
 
 function render() {
   cart = JSON.parse(localStorage.getItem('cart'));
