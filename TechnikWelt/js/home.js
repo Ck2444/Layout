@@ -107,11 +107,21 @@ function addToCart(item) {
   let cart = getLocalStorage('cart');
 
   if (cart) {
-    cart.push({ ...item, cardId: Date.now() });
+    let foundProduct = cart.find((product) => product.id === item.id);
+    if (foundProduct) {
+      cart = cart.map((product) => {
+        if (product.id === item.id) {
+          product.count = ++product.count;
+        }
+        return product;
+      });
+    } else {
+      cart.push({ ...item, count: 1 });
+    }
 
     setLocalStorage('cart', cart);
   } else {
-    setLocalStorage('cart', [{ ...item, cardId: Date.now() }]);
+    setLocalStorage('cart', [{ ...item, count: 1 }]);
   }
   //   cart.push({ ...item, cardId: Math.random() });
   //   console.log(cart);
@@ -165,25 +175,40 @@ const filterBySort = (e = null) => {
   createProducts(sortStore, 'products', '.page-home .container');
 };
 
-function render() {
+async function render() {
   let filter = document.querySelector('.product-filter');
   let searchForm = document.querySelector('.search-form__input');
   searchForm.onkeyup = handlerChangeInput;
   filter.addEventListener('change', filterBySort);
 
-  fetch('https://fakestoreapi.com/products')
-    .then((res) => res.json())
-    .then((data) => {
-      store = data;
+  // fetch('https://fakestoreapi.com/products')
+  //   .then((res) => res.json())
+  //   .then((data) => {
+  //     store = data;
 
-      createProducts(store, 'products', '.page-home .container');
-      filterBySort();
-    })
-    .finally(() => {
-      let getSelectetedOption = getLocalStorage('sortBy');
-      filterBySort();
-      filter.value = String(getSelectetedOption);
-    });
+  //     createProducts(store, 'products', '.page-home .container');
+  //     filterBySort();
+  //   })
+  //   .finally(() => {
+  //     let getSelectetedOption = getLocalStorage('sortBy');
+  //     filterBySort();
+  //     filter.value = String(getSelectetedOption);
+  //   });
+
+  try {
+    let data = await fetch('https://fakestoreapi.com/products');
+    let res = await data.json();
+    store = res;
+    createProducts(store, 'products', '.page-home .container');
+  } catch (err) {
+    console.log('this is error');
+  } finally {
+    let getSelectetedOption = getLocalStorage('sortBy');
+
+    filterBySort();
+
+    filter.value = getSelectetedOption;
+  }
 }
 
 render();

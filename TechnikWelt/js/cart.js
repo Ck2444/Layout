@@ -9,6 +9,38 @@ let cart = [];
 const getLocalStorage = (key) => JSON.parse(localStorage.getItem(key));
 const setLocalStorage = (key, data) => localStorage.setItem(key, JSON.stringify(data));
 
+function cartDecrement(_id) {
+  //let cart = getLocalStorage('cart');
+
+  cart = cart
+    .map((product) => {
+      if (product.id === _id) {
+        product.count = --product.count;
+      }
+      if (product.count === 0) {
+        return;
+      }
+
+      return product;
+    })
+    .filter((item) => item);
+
+  setLocalStorage('cart', cart);
+  updateCart();
+}
+
+function cartIncrement(_id) {
+  cart = cart.map((product) => {
+    if (product.id === _id) {
+      product.count = ++product.count;
+    }
+    return product;
+  });
+
+  setLocalStorage('cart', cart);
+  updateCart();
+}
+
 function createCartItem(item) {
   let elementItem = document.createElement('div');
   elementItem;
@@ -26,13 +58,33 @@ function createCartItem(item) {
   elementPrice.innerText = `${item.price} €`;
   elementPrice.classList.add('item__price');
 
+  let elementActions = document.createElement('span');
+  elementActions.classList.add('item__actions');
+
+  let elementButtonDecrement = document.createElement('button');
+  elementButtonDecrement.onclick = () => cartDecrement(item.id);
+  elementButtonDecrement.innerText = '-';
+  elementButtonDecrement.classList.add('decrement');
+
+  let elementCount = document.createElement('span');
+  elementCount.innerText = item.count;
+  elementCount.classList.add('item__count');
+
+  let elementButtonIncrement = document.createElement('button');
+  elementButtonIncrement.onclick = () => cartIncrement(item.id);
+  elementButtonIncrement.innerText = '+';
+  elementButtonIncrement.classList.add('increment');
+
+  elementActions.append(elementButtonDecrement);
+  elementActions.append(elementCount);
+  elementActions.append(elementButtonIncrement);
+
   let elementButton = document.createElement('button');
   elementButton.onclick = () => removeItem(item);
   elementButton.innerText = 'REMOVE ITEM';
   elementButton.classList.add('btn', 'btn-red');
 
-  elementItem.append(elementItitle, elementImg, elementPrice, elementButton);
-
+  elementItem.append(elementItitle, elementImg, elementPrice, elementActions, elementButton);
   return elementItem;
 }
 
@@ -66,7 +118,7 @@ function createCartItem(item) {
 // }
 
 function removeItem(item) {
-  cart = cart.filter((product) => product.cardId !== item.cardId);
+  cart = cart.filter((product) => product.cartId !== item.cardId);
 
   setLocalStorage('cart', cart);
   updateCart();
@@ -90,13 +142,13 @@ function updateCart(cartItems = cart) {
 const getSumCart = () => {
   const cartSumResult = document.querySelector('.cart-sum__result');
 
-  const cartSum = cart.reduce((acc, val) => acc + val.price, 0);
+  const cartSum = cart.reduce((acc, val) => acc + val.price * val.count, 0);
 
-  cartSumResult.innerText = `${cartSum} $`;
+  cartSumResult.innerText = `${cartSum.toFixed(2)}$`;
 };
 
 function render() {
-  cart = JSON.parse(localStorage.getItem('cart'));
+  cart = getLocalStorage('cart');
 
   updateCart();
 }
